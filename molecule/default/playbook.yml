@@ -1,0 +1,11 @@
+---
+- name: Converge
+  hosts: all
+  roles:
+    - role: ansible-role-php
+
+  vars:
+    php_enable_webserver: false
+    php_enable_php_fpm: true
+    php_memory_limit: "192M"
+    php_install_recommends: 'no'
