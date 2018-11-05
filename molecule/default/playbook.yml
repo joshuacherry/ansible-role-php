@@ -4,6 +4,13 @@
   roles:
     - role: ansible-role-php
 
+  pre_tasks:
+    - name: Set Debian php version
+      set_fact:
+        php_default_version_debian: "7.2"
+      when: ansible_distribution_release == 'bionic'
+      changed_when: false
+
   vars:
     php_enable_webserver: false
     php_enable_php_fpm: true
