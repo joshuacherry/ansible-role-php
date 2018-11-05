@@ -41,17 +41,15 @@
 
 - name: Add dependencies for PHP versions.
   apt:
-    name: "{{ item }}"
-  with_items:
-    - 'apt-transport-https'
-    - 'ca-certificates'
+    name:
+      - 'apt-transport-https'
+      - 'ca-certificates'
 
 - name: Ensure PHP packages are installed.
   apt:
-    name: "{{ item }}"
+    name: "{{ php_packages }}"
     state: "{{ php_packages_state }}"
     install_recommends: "{{ php_install_recommends }}"
-  with_items: "{{ php_packages }}"
   register: php_package_install
   notify: restart webserver
 
